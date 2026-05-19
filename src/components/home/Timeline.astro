@@ -1,0 +1,29 @@
+---
+import type { ProfileEntry } from '../../utils/content';
+
+interface Props {
+  title: string;
+  profile: ProfileEntry;
+}
+
+const { title, profile } = Astro.props;
+---
+
+<section class="content-section">
+  <div class="section-heading">
+    <p>/ 04</p>
+    <h2>{title}</h2>
+  </div>
+  <div class="timeline-list">
+    {profile.data.timeline.map((item) => (
+      <article class="timeline-item">
+        <p class="timeline-period">{item.period}</p>
+        <div>
+          <h3>{item.title}</h3>
+          <p class="timeline-org">{item.organization}</p>
+          <p>{item.summary}</p>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>

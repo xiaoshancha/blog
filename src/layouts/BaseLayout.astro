@@ -1,0 +1,70 @@
+---
+import { getDictionary } from '../i18n/config';
+import { siteConfig } from '../site.config';
+import type { SiteLocale } from '../site.config';
+import { homePath, postsPath } from '../utils/i18n';
+import '../styles/global.css';
+
+interface Alternate {
+  hrefLang: string;
+  href: string;
+}
+
+interface Props {
+  locale: SiteLocale;
+  title: string;
+  description: string;
+  canonicalPath: string;
+  alternateLinks?: Alternate[];
+  otherLocaleHref?: string;
+}
+
+const {
+  locale,
+  title,
+  description,
+  canonicalPath,
+  alternateLinks = [],
+  otherLocaleHref,
+} = Astro.props;
+const dictionary = getDictionary(locale);
+---
+
+<!doctype html>
+<html lang={locale === 'zh-cn' ? 'zh-CN' : 'en'}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#f3efe6" />
+    <link rel="icon" href={`${siteConfig.base}/favicon.svg`} />
+    <link rel="canonical" href={`${siteConfig.site}${canonicalPath}`} />
+    {alternateLinks.map((link) => <link rel="alternate" hreflang={link.hrefLang} href={`${siteConfig.site}${link.href}`} />)}
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="page-shell">
+      <div class="background-glow background-glow-left"></div>
+      <div class="background-glow background-glow-right"></div>
+      <header class="site-header">
+        <a class="brand" href={homePath(locale)}>{siteConfig.name}</a>
+        <nav>
+          <a href={homePath(locale)}>{dictionary.navHome}</a>
+          <a href={postsPath(locale)}>{dictionary.navPosts}</a>
+          <a href={`${homePath(locale)}#contact`}>{dictionary.navContact}</a>
+          {otherLocaleHref ? (
+            <a href={otherLocaleHref} aria-label={dictionary.navSwitch}>
+              {locale === 'zh-cn' ? dictionary.continueToEnglish : dictionary.continueToChinese}
+            </a>
+          ) : null}
+        </nav>
+      </header>
+      <main>
+        <slot />
+      </main>
+      <footer class="site-footer">
+        <p>{dictionary.footerNote}</p>
+      </footer>
+    </div>
+  </body>
+</html>

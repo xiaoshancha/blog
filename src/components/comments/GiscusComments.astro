@@ -1,0 +1,46 @@
+---
+import { siteConfig } from '../../site.config';
+
+interface Props {
+  term: string;
+  lang: string;
+  title: string;
+  setupMessage: string;
+}
+
+const { term, lang, title, setupMessage } = Astro.props;
+
+const configured =
+  siteConfig.giscus.repoId.length > 0 && siteConfig.giscus.categoryId.length > 0;
+---
+
+<section class="comments-block">
+  <div class="section-heading">
+    <p>/ 07</p>
+    <h2>{title}</h2>
+  </div>
+  {configured ? (
+    <div class="giscus-frame">
+      <script
+        is:inline
+        src="https://giscus.app/client.js"
+        data-repo={siteConfig.giscus.repo}
+        data-repo-id={siteConfig.giscus.repoId}
+        data-category={siteConfig.giscus.category}
+        data-category-id={siteConfig.giscus.categoryId}
+        data-mapping="specific"
+        data-term={term}
+        data-strict="1"
+        data-reactions-enabled={siteConfig.giscus.reactionsEnabled}
+        data-emit-metadata={siteConfig.giscus.emitMetadata}
+        data-input-position={siteConfig.giscus.inputPosition}
+        data-theme={siteConfig.giscus.theme}
+        data-lang={lang}
+        crossorigin="anonymous"
+        async
+      />
+    </div>
+  ) : (
+    <p class="comments-setup">{setupMessage}</p>
+  )}
+</section>

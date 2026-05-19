@@ -1,0 +1,32 @@
+---
+import { render } from 'astro:content';
+import { getPostsByLocale, getTranslatedPost, slugFromId } from '../../utils/content';
+import { postPath } from '../../utils/i18n';
+import BlogPostLayout from '../../layouts/BlogPostLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getPostsByLocale('zh-cn');
+
+  return posts.map((post) => ({
+    params: { slug: slugFromId(post.id) },
+    props: { post },
+  }));
+}
+
+const locale = 'zh-cn' as const;
+const { post } = Astro.props;
+const { Content } = await render(post);
+const english = await getTranslatedPost(post, 'en');
+---
+
+<BlogPostLayout
+  locale={locale}
+  post={post}
+  canonicalPath={postPath(locale, slugFromId(post.id))}
+  alternateLinks={[
+    { hrefLang: 'zh-CN', href: postPath(locale, slugFromId(post.id)) },
+    ...(english ? [{ hrefLang: 'en', href: postPath('en', slugFromId(english.id)) }] : []),
+  ]}
+  otherLocaleHref={english ? postPath('en', slugFromId(english.id)) : undefined}
+  content={Content}
+/>

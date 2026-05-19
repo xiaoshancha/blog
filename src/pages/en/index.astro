@@ -1,0 +1,44 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/home/Hero.astro';
+import Bio from '../../components/home/Bio.astro';
+import Projects from '../../components/home/Projects.astro';
+import Skills from '../../components/home/Skills.astro';
+import Timeline from '../../components/home/Timeline.astro';
+import Contact from '../../components/home/Contact.astro';
+import SocialLinks from '../../components/home/SocialLinks.astro';
+import { getDictionary } from '../../i18n/config';
+import { getPostsByLocale, getProfile } from '../../utils/content';
+import { homePath } from '../../utils/i18n';
+
+const locale = 'en' as const;
+const dictionary = getDictionary(locale);
+const profile = await getProfile(locale);
+
+if (!profile) {
+  throw new Error('Missing en profile content.');
+}
+
+const posts = await getPostsByLocale(locale);
+const { Content } = await render(profile);
+---
+
+<BaseLayout
+  locale={locale}
+  title="Shanshancha · Personal Space"
+  description={profile.data.heroLead}
+  canonicalPath={homePath(locale)}
+  alternateLinks={[{ hrefLang: 'zh-CN', href: homePath('zh-cn') }]}
+  otherLocaleHref={homePath('zh-cn')}
+>
+  <div class="home-shell">
+    <Hero profile={profile} dictionary={dictionary} postsCount={posts.length} />
+    <Bio title={dictionary.sectionBio} content={Content} />
+    <Projects title={dictionary.sectionProjects} profile={profile} dictionary={dictionary} />
+    <Skills title={dictionary.sectionSkills} profile={profile} />
+    <Timeline title={dictionary.sectionTimeline} profile={profile} />
+    <Contact title={dictionary.sectionContact} profile={profile} />
+    <SocialLinks title={dictionary.sectionSocial} profile={profile} />
+  </div>
+</BaseLayout>

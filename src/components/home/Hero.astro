@@ -1,0 +1,49 @@
+---
+import type { ProfileEntry } from '../../utils/content';
+interface Props {
+  profile: ProfileEntry;
+  dictionary: Record<string, string>;
+  postsCount: number;
+}
+
+const { profile, dictionary, postsCount } = Astro.props;
+---
+
+<section class="hero-panel">
+  <div class="hero-copy">
+    <p class="eyebrow">{profile.data.heroKicker}</p>
+    <h1>{profile.data.heroTitle}</h1>
+    <p class="hero-lead">{profile.data.heroLead}</p>
+    <div class="hero-metrics" aria-label="Site metrics">
+      <div>
+        <strong>{postsCount}</strong>
+        <span>{dictionary.heroMetricWriting}</span>
+      </div>
+      <div>
+        <strong>{profile.data.projects.length}</strong>
+        <span>{dictionary.heroMetricProjects}</span>
+      </div>
+      <div>
+        <strong>1.0</strong>
+        <span>{dictionary.heroMetricCraft}</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-card">
+    <p class="availability">{profile.data.availability}</p>
+    <dl>
+      <div>
+        <dt>{dictionary.heroFactBase}</dt>
+        <dd>{profile.data.location}</dd>
+      </div>
+      <div>
+        <dt>{dictionary.heroFactPublishing}</dt>
+        <dd>{dictionary.heroFactPublishingValue}</dd>
+      </div>
+      <div>
+        <dt>{dictionary.heroFactFocus}</dt>
+        <dd>{dictionary.heroFactFocusValue}</dd>
+      </div>
+    </dl>
+  </div>
+</section>

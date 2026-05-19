@@ -1,0 +1,105 @@
+.posts-lead,
+.post-description,
+.empty-state,
+.comments-setup {
+  color: var(--text-soft);
+}
+
+.post-list {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.8rem;
+}
+
+.post-card,
+.post-header,
+.post-body,
+.comments-block,
+.not-found-shell {
+  background: var(--surface-strong);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: var(--shadow);
+}
+
+.post-card,
+.comments-block,
+.not-found-shell {
+  border-radius: var(--radius-xl);
+  padding: 1.5rem;
+}
+
+.post-card h2 {
+  margin: 0.4rem 0 0.8rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+}
+
+.post-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.2rem;
+}
+
+.post-shell {
+  display: grid;
+  gap: 1rem;
+}
+
+.back-link {
+  width: fit-content;
+}
+
+.post-header,
+.post-body {
+  border-radius: var(--radius-xl);
+  padding: 1.8rem;
+}
+
+.post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  color: var(--text-soft);
+  margin-top: 1.2rem;
+}
+
+.post-body {
+  line-height: 1.85;
+}
+
+.post-body h2,
+.post-body h3 {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.comments-block {
+  margin-top: 0.6rem;
+}
+
+.giscus-frame {
+  margin-top: 1.2rem;
+}
+
+.not-found-shell {
+  display: grid;
+  gap: 1rem;
+  text-align: center;
+  justify-items: center;
+  padding: 3rem 1.5rem;
+}
+
+@media (max-width: 780px) {
+  .post-card-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .post-header,
+  .post-body,
+  .post-card,
+  .comments-block {
+    padding: 1.3rem;
+  }
+}

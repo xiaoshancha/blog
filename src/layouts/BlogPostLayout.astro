@@ -1,0 +1,51 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import GiscusComments from '../components/comments/GiscusComments.astro';
+import type { SiteLocale } from '../site.config';
+import type { BlogEntry } from '../utils/content';
+import { formatLocaleDate, postsPath } from '../utils/i18n';
+import { getDictionary } from '../i18n/config';
+
+interface Props {
+  locale: SiteLocale;
+  post: BlogEntry;
+  canonicalPath: string;
+  alternateLinks: { hrefLang: string; href: string }[];
+  otherLocaleHref?: string;
+  content: any;
+}
+
+const { locale, post, canonicalPath, alternateLinks, otherLocaleHref, content: Content } = Astro.props;
+const dictionary = getDictionary(locale);
+---
+
+<BaseLayout
+  locale={locale}
+  title={`${post.data.title} · 山山山茶`}
+  description={post.data.description}
+  canonicalPath={canonicalPath}
+  alternateLinks={alternateLinks}
+  otherLocaleHref={otherLocaleHref}
+>
+  <article class="post-shell">
+    <a class="back-link" href={postsPath(locale)}>{dictionary.backToPosts}</a>
+    <header class="post-header">
+      <p class="eyebrow">{post.data.readingTime}</p>
+      <h1>{post.data.title}</h1>
+      <p class="post-description">{post.data.description}</p>
+      <div class="post-meta">
+        <span>{dictionary.publishedOn}: {formatLocaleDate(locale, post.data.date)}</span>
+        {post.data.updated ? <span>{dictionary.updatedOn}: {formatLocaleDate(locale, post.data.updated)}</span> : null}
+      </div>
+    </header>
+    <div class="post-body prose-shell">
+      <Content />
+    </div>
+    <GiscusComments
+      term={post.data.translationKey}
+      lang={locale === 'zh-cn' ? 'zh-CN' : 'en'}
+      title={dictionary.commentsTitle}
+      setupMessage={dictionary.commentsSetup}
+    />
+  </article>
+</BaseLayout>

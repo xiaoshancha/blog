@@ -1,0 +1,26 @@
+---
+import type { BlogEntry } from '../../utils/content';
+import type { SiteLocale } from '../../site.config';
+import { formatLocaleDate, postPath } from '../../utils/i18n';
+import { slugFromId } from '../../utils/content';
+
+interface Props {
+  locale: SiteLocale;
+  post: BlogEntry;
+  dictionary: Record<string, string>;
+}
+
+const { locale, post, dictionary } = Astro.props;
+---
+
+  <article class="post-card">
+  <p class="post-date">{formatLocaleDate(locale, post.data.date)}</p>
+  <h2><a href={postPath(locale, slugFromId(post.id))}>{post.data.title}</a></h2>
+  <p>{post.data.description}</p>
+  <div class="post-card-footer">
+    <ul class="chip-list">
+      {post.data.tags.map((tag) => <li>{tag}</li>)}
+    </ul>
+    <a class="post-link" href={postPath(locale, slugFromId(post.id))}>{dictionary.readArticle}</a>
+  </div>
+</article>

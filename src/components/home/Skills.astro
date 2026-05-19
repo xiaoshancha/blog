@@ -1,0 +1,27 @@
+---
+import type { ProfileEntry } from '../../utils/content';
+
+interface Props {
+  title: string;
+  profile: ProfileEntry;
+}
+
+const { title, profile } = Astro.props;
+---
+
+<section class="content-section">
+  <div class="section-heading">
+    <p>/ 03</p>
+    <h2>{title}</h2>
+  </div>
+  <div class="skills-grid">
+    {profile.data.skillGroups.map((group) => (
+      <article class="skill-card">
+        <h3>{group.title}</h3>
+        <ul class="chip-list">
+          {group.items.map((item) => <li>{item}</li>)}
+        </ul>
+      </article>
+    ))}
+  </div>
+</section>

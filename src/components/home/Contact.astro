@@ -1,0 +1,23 @@
+---
+import type { ProfileEntry } from '../../utils/content';
+
+interface Props {
+  title: string;
+  profile: ProfileEntry;
+}
+
+const { title, profile } = Astro.props;
+---
+
+<section class="content-section contact-shell" id="contact">
+  <div class="section-heading">
+    <p>/ 05</p>
+    <h2>{title}</h2>
+  </div>
+  <div class="contact-card">
+    <a class="contact-link" href={profile.data.emailHref} target="_blank" rel="noreferrer">
+      {profile.data.emailLabel}
+    </a>
+    <p>{profile.data.contactNote}</p>
+  </div>
+</section>

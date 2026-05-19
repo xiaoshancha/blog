@@ -1,0 +1,21 @@
+---
+import type { BlogEntry } from '../../utils/content';
+import type { SiteLocale } from '../../site.config';
+import PostCard from './PostCard.astro';
+
+interface Props {
+  locale: SiteLocale;
+  posts: BlogEntry[];
+  dictionary: Record<string, string>;
+}
+
+const { locale, posts, dictionary } = Astro.props;
+---
+
+{posts.length ? (
+  <div class="post-list">
+    {posts.map((post) => <PostCard locale={locale} post={post} dictionary={dictionary} />)}
+  </div>
+) : (
+  <p class="empty-state">{dictionary.postsEmpty}</p>
+)}

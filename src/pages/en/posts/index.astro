@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PostList from '../../../components/blog/PostList.astro';
+import { getDictionary } from '../../../i18n/config';
+import { getPostsByLocale } from '../../../utils/content';
+import { postsPath } from '../../../utils/i18n';
+
+const locale = 'en' as const;
+const dictionary = getDictionary(locale);
+const posts = await getPostsByLocale(locale);
+---
+
+<BaseLayout
+  locale={locale}
+  title={`${dictionary.postsTitle} · Shanshancha`}
+  description={dictionary.postsLead}
+  canonicalPath={postsPath(locale)}
+  alternateLinks={[{ hrefLang: 'zh-CN', href: postsPath('zh-cn') }]}
+  otherLocaleHref={postsPath('zh-cn')}
+>
+  <section class="posts-shell">
+    <div class="section-heading">
+      <p>{dictionary.archiveEyebrow}</p>
+      <h1>{dictionary.postsTitle}</h1>
+    </div>
+    <p class="posts-lead">{dictionary.postsLead}</p>
+    <PostList locale={locale} posts={posts} dictionary={dictionary} />
+  </section>
+</BaseLayout>

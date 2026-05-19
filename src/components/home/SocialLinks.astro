@@ -1,0 +1,25 @@
+---
+import type { ProfileEntry } from '../../utils/content';
+
+interface Props {
+  title: string;
+  profile: ProfileEntry;
+}
+
+const { title, profile } = Astro.props;
+---
+
+<section class="content-section">
+  <div class="section-heading">
+    <p>/ 06</p>
+    <h2>{title}</h2>
+  </div>
+  <div class="social-grid">
+    {profile.data.socials.map((social) => (
+      <a class="social-card" href={social.href} target="_blank" rel="noreferrer">
+        <span>{social.label}</span>
+        <strong>{social.handle}</strong>
+      </a>
+    ))}
+  </div>
+</section>
