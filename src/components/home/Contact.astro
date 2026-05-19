@@ -7,6 +7,8 @@ interface Props {
 }
 
 const { title, profile } = Astro.props;
+const href = profile.data.emailHref?.trim();
+const isLink = /^(https?:\/\/|mailto:)/.test(href);
 ---
 
 <section class="content-section contact-shell" id="contact">
@@ -15,9 +17,16 @@ const { title, profile } = Astro.props;
     <h2>{title}</h2>
   </div>
   <div class="contact-card">
-    <a class="contact-link" href={profile.data.emailHref} target="_blank" rel="noreferrer">
-      {profile.data.emailLabel}
-    </a>
-    <p>{profile.data.contactNote}</p>
+    {isLink ? (
+      <a class="contact-link" href={href} target="_blank" rel="noreferrer">
+        {profile.data.emailLabel}
+      </a>
+    ) : (
+      <div class="contact-text">
+        <strong>{profile.data.emailLabel}</strong>
+        <p>{href}</p>
+      </div>
+    )}
+    {profile.data.contactNote ? <p>{profile.data.contactNote}</p> : null}
   </div>
 </section>

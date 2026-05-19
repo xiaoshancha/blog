@@ -19,19 +19,21 @@ socials:
     href: https://xiaoshancha.github.io/blog/
     handle: xiaoshancha.github.io/blog
 projects:
-  - name: Personal Site Rebuild
-    href: https://github.com/xiaoshancha/blog
+  - name: hello-agents
+    href: https://github.com/xiaoshancha/hello-agents
     year: '2026'
-    summary: Rebuilding the blog and personal homepage on Astro so writing, presentation, and multilingual structure can live together.
-    stack: [Astro, GitHub Pages, Giscus]
-  - name: Writing Garden
-    year: '2025'
-    summary: A steady public-writing habit shaped around essays, reading notes, and pieces worth returning to later.
-    stack: [Markdown, Content Design, Editorial Systems]
-  - name: Motion Without Noise
-    year: '2024'
-    summary: A set of interface studies focused on using restrained motion to create atmosphere instead of spectacle.
-    stack: [CSS, Interaction, Frontend Craft]
+    summary: An open tutorial project that walks from agent fundamentals to practical multi-agent system building with a strong hands-on emphasis.
+    stack: [Python, Agent Systems, Open Tutorial]
+  - name: 2024-AICS-EXP
+    href: https://github.com/xiaoshancha/2024-AICS-EXP
+    year: '2026'
+    summary: A maintained archive of UCAS Intelligent Computing Systems labs, covering PyTorch-based coursework, operator development, and LLM experiments.
+    stack: [PyTorch, Course Labs, LLM Experiments]
+  - name: tencent-translator-edge-extension
+    href: https://github.com/xiaoshancha/tencent-translator-edge-extension
+    year: '2026'
+    summary: An Edge browser translation extension built around Tencent Cloud translation, cursor-side popups, and configurable terminology support.
+    stack: [JavaScript, Edge Extension, Tencent Cloud]
 skillGroups:
   - title: Visual and frontend craft
     items: [Astro, HTML/CSS, Responsive Layouts, Motion Restraint]

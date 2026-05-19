@@ -19,19 +19,21 @@ socials:
     href: https://xiaoshancha.github.io/blog/
     handle: xiaoshancha.github.io/blog
 projects:
-  - name: 个人站点重构
-    href: https://github.com/xiaoshancha/blog
+  - name: hello-agents
+    href: https://github.com/xiaoshancha/hello-agents
     year: '2026'
-    summary: "以 Astro 重建博客与个人主页，让写作、项目展示与多语言结构共存。"
-    stack: [Astro, GitHub Pages, Giscus]
-  - name: Writing Garden
-    year: '2025'
-    summary: "把日常观察、长文草稿与阅读笔记整理成长期可归档的公开写作习惯。"
-    stack: [Markdown, Content Design, Editorial Systems]
-  - name: Motion Without Noise
-    year: '2024'
-    summary: "一组针对网页质感的练习，目标是用克制的动效换取更强的气质，而不是更高的噪音。"
-    stack: [CSS, Interaction, Frontend Craft]
+    summary: "一个从零讲清智能体原理与实践的开源教程项目，覆盖基础概念、框架实践和多智能体系统构建。"
+    stack: [Python, Agent Systems, Open Tutorial]
+  - name: 2024-AICS-EXP
+    href: https://github.com/xiaoshancha/2024-AICS-EXP
+    year: '2026'
+    summary: "国科大智能计算系统实验资料整理仓库，围绕 PyTorch、算子开发和大模型实验提供完整代码与实验参考。"
+    stack: [PyTorch, Course Labs, LLM Experiments]
+  - name: tencent-translator-edge-extension
+    href: https://github.com/xiaoshancha/tencent-translator-edge-extension
+    year: '2026'
+    summary: "一个运行在 Edge 浏览器上的翻译插件，接入腾讯云翻译并支持选中即译、跟随光标浮窗和术语库配置。"
+    stack: [JavaScript, Edge Extension, Tencent Cloud]
 skillGroups:
   - title: 视觉与前端
     items: [Astro, HTML/CSS, Responsive Layouts, Motion Restraint]
