@@ -1,13 +1,13 @@
 ---
-name: "山山山茶"
-heroKicker: "独立写作者 / 数字手艺人"
-heroTitle: "把情绪、代码与生活缝进同一张页面"
-heroLead: "我想做的不是一个普通博客，而是一处能代表我审美、节奏与判断力的个人空间。"
-availability: "接受合作、交流与长期对话"
-location: "Online / China"
-emailLabel: "通过 GitHub 找到我"
-emailHref: "https://github.com/xiaoshancha"
-contactNote: "目前最稳定的联系方式是 GitHub；邮箱与更多链接可以在后续内容填充时替换。"
+name: "袁泉"
+heroKicker: "山山山茶"
+heroTitle: "你问我为什么顽固而专一"
+heroLead: "我想好好介绍我自己"
+availability: "欢迎与我讨论交流"
+location: "中国 北京（工作地）/阜新 沈阳（家乡）"
+emailLabel: "联系方式"
+emailHref: "Github：https://github.com/xiaoshancha，Email：1337630175@qq.com,就用qq邮箱，爱高级不高级"
+contactNote: ""
 socials:
   - label: GitHub
     href: https://github.com/xiaoshancha
