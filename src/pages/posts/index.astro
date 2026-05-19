@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PostList from '../../components/blog/PostList.astro';
 import { getDictionary } from '../../i18n/config';
+import { siteConfig } from '../../site.config';
 import { getPostsByLocale } from '../../utils/content';
 import { postsPath } from '../../utils/i18n';
 
@@ -12,7 +13,7 @@ const posts = await getPostsByLocale(locale);
 
 <BaseLayout
   locale={locale}
-  title={`${dictionary.postsTitle} · 山山山茶`}
+  title={`${dictionary.postsTitle} · ${siteConfig.name}`}
   description={dictionary.postsLead}
   canonicalPath={postsPath(locale)}
   alternateLinks={[{ hrefLang: 'en', href: postsPath('en') }]}

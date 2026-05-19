@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getDictionary } from '../../i18n/config';
+import { siteConfig } from '../../site.config';
+import { homePath, setupPath } from '../../utils/i18n';
+
+const locale = 'en' as const;
+const dictionary = getDictionary(locale);
+
+const cards = [
+  {
+    title: dictionary.setupProfileTitle,
+    body: dictionary.setupProfileBody,
+    cta: dictionary.setupActionOpen,
+    href: 'https://github.com/xiaoshancha/blog/edit/master/src/content/profile/en.md',
+    meta: 'src/content/profile/zh-cn.md / src/content/profile/en.md',
+  },
+  {
+    title: dictionary.setupPostsTitle,
+    body: dictionary.setupPostsBody,
+    cta: dictionary.setupActionFolder,
+    href: 'https://github.com/xiaoshancha/blog/tree/master/src/content/blog/en',
+    meta: 'src/content/blog/zh-cn/ / src/content/blog/en/',
+  },
+  {
+    title: dictionary.setupConfigTitle,
+    body: dictionary.setupConfigBody,
+    cta: dictionary.setupActionOpen,
+    href: 'https://github.com/xiaoshancha/blog/edit/master/site.config.mjs',
+    meta: 'site.config.mjs',
+  },
+  {
+    title: dictionary.setupPublishTitle,
+    body: dictionary.setupPublishBody,
+    cta: dictionary.setupActionCommand,
+    href: '#publish',
+    meta: 'npm run build && cp -R dist/. . && git add -A && git commit -m "..." && git push origin master',
+  },
+];
+---
+
+<BaseLayout
+  locale={locale}
+  title={`${dictionary.setupTitle} · ${siteConfig.name}`}
+  description={dictionary.setupLead}
+  canonicalPath={setupPath(locale)}
+  alternateLinks={[{ hrefLang: 'zh-CN', href: setupPath('zh-cn') }]}
+  otherLocaleHref={setupPath('zh-cn')}
+>
+  <section class="posts-shell">
+    <div class="section-heading">
+      <p>/ Setup</p>
+      <h1>{dictionary.setupTitle}</h1>
+    </div>
+    <p class="posts-lead">{dictionary.setupLead}</p>
+    <div class="post-list">
+      {cards.map((card) => (
+        <article class="post-card">
+          <p class="post-date">{card.meta}</p>
+          <h2>{card.title}</h2>
+          <p>{card.body}</p>
+          <div class="post-card-footer">
+            <span class="empty-state">{card.meta}</span>
+            {card.href.startsWith('#') ? (
+              <a class="post-link" href={card.href}>{card.cta}</a>
+            ) : (
+              <a class="post-link" href={card.href} target="_blank" rel="noreferrer">{card.cta}</a>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+    <article class="post-card" id="publish">
+      <p class="post-date">{dictionary.setupActionCommand}</p>
+      <h2>Publish</h2>
+      <div class="post-body prose-shell">
+        <pre><code>npm run build
+cp -R dist/. .
+git add -A
+git commit -m "..."
+git push origin master</code></pre>
+      </div>
+      <div class="post-card-footer">
+        <a class="post-link" href={homePath(locale)}>{dictionary.notFoundCta}</a>
+      </div>
+    </article>
+  </section>
+</BaseLayout>

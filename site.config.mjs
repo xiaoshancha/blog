@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: '山山山茶',
+  name: 'xiaoshancha',
   site: 'https://xiaoshancha.github.io',
   base: '/blog',
   defaultLocale: 'zh-cn',

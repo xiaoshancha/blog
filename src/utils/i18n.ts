@@ -38,6 +38,10 @@ export function postsPath(locale: SiteLocale) {
   return localizedPath(locale, 'posts');
 }
 
+export function setupPath(locale: SiteLocale) {
+  return localizedPath(locale, 'setup');
+}
+
 export function postPath(locale: SiteLocale, slug: string) {
   return localizedPath(locale, `posts/${slug}`);
 }

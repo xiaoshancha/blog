@@ -1,7 +1,7 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import GiscusComments from '../components/comments/GiscusComments.astro';
-import type { SiteLocale } from '../site.config';
+import { siteConfig, type SiteLocale } from '../site.config';
 import type { BlogEntry } from '../utils/content';
 import { formatLocaleDate, postsPath } from '../utils/i18n';
 import { getDictionary } from '../i18n/config';
@@ -21,7 +21,7 @@ const dictionary = getDictionary(locale);
 
 <BaseLayout
   locale={locale}
-  title={`${post.data.title} · 山山山茶`}
+  title={`${post.data.title} · ${siteConfig.name}`}
   description={post.data.description}
   canonicalPath={canonicalPath}
   alternateLinks={alternateLinks}

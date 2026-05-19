@@ -2,7 +2,7 @@
 import { getDictionary } from '../i18n/config';
 import { siteConfig } from '../site.config';
 import type { SiteLocale } from '../site.config';
-import { homePath, postsPath } from '../utils/i18n';
+import { homePath, postsPath, setupPath } from '../utils/i18n';
 import '../styles/global.css';
 
 interface Alternate {
@@ -51,6 +51,7 @@ const dictionary = getDictionary(locale);
         <nav>
           <a href={homePath(locale)}>{dictionary.navHome}</a>
           <a href={postsPath(locale)}>{dictionary.navPosts}</a>
+          <a href={setupPath(locale)}>{dictionary.navSetup}</a>
           <a href={`${homePath(locale)}#contact`}>{dictionary.navContact}</a>
           {otherLocaleHref ? (
             <a href={otherLocaleHref} aria-label={dictionary.navSwitch}>

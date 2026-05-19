@@ -9,6 +9,7 @@ import Timeline from '../../components/home/Timeline.astro';
 import Contact from '../../components/home/Contact.astro';
 import SocialLinks from '../../components/home/SocialLinks.astro';
 import { getDictionary } from '../../i18n/config';
+import { siteConfig } from '../../site.config';
 import { getPostsByLocale, getProfile } from '../../utils/content';
 import { homePath } from '../../utils/i18n';
 
@@ -26,7 +27,7 @@ const { Content } = await render(profile);
 
 <BaseLayout
   locale={locale}
-  title="Shanshancha · Personal Space"
+  title={`${siteConfig.name} · Personal Space`}
   description={profile.data.heroLead}
   canonicalPath={homePath(locale)}
   alternateLinks={[{ hrefLang: 'zh-CN', href: homePath('zh-cn') }]}

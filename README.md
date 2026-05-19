@@ -1,4 +1,4 @@
-# 山山山茶 / Personal Site
+# xiaoshancha / Personal Site
 
 An Astro-based bilingual personal site and blog for `xiaoshancha/blog`.
 
@@ -31,6 +31,11 @@ npm run preview
 - English posts: `src/content/blog/en/`
 
 Each translated post must share the same `translationKey`.
+
+Owner-facing content entry page:
+
+- Chinese: `/blog/setup/`
+- English: `/blog/en/setup/`
 
 ## Route contract
 

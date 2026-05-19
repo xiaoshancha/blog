@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getDictionary } from '../i18n/config';
+import { siteConfig } from '../site.config';
 import { homePath, notFoundPath } from '../utils/i18n';
 
 const locale = 'zh-cn' as const;
@@ -9,7 +10,7 @@ const dictionary = getDictionary(locale);
 
 <BaseLayout
   locale={locale}
-  title={`${dictionary.notFoundTitle} · 山山山茶`}
+  title={`${dictionary.notFoundTitle} · ${siteConfig.name}`}
   description={dictionary.notFoundBody}
   canonicalPath={notFoundPath()}
 >
