@@ -16,10 +16,17 @@ const { title, profile } = Astro.props;
   </div>
   <div class="social-grid">
     {profile.data.socials.map((social) => (
-      <a class="social-card" href={social.href} target="_blank" rel="noreferrer">
-        <span>{social.label}</span>
-        <strong>{social.handle}</strong>
-      </a>
+      social.href ? (
+        <a class="social-card" href={social.href} target="_blank" rel="noreferrer">
+          <span>{social.label}</span>
+          <strong>{social.handle}</strong>
+        </a>
+      ) : (
+        <div class="social-card">
+          <span>{social.label}</span>
+          <strong>{social.handle}</strong>
+        </div>
+      )
     ))}
   </div>
 </section>

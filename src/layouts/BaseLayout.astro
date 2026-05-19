@@ -3,6 +3,7 @@ import { getDictionary } from '../i18n/config';
 import { siteConfig } from '../site.config';
 import type { SiteLocale } from '../site.config';
 import { homePath, postsPath, setupPath } from '../utils/i18n';
+import FooterChannels from '../components/common/FooterChannels.astro';
 import '../styles/global.css';
 
 interface Alternate {
@@ -65,6 +66,7 @@ const dictionary = getDictionary(locale);
       </main>
       <footer class="site-footer">
         <p>{dictionary.footerNote}</p>
+        <FooterChannels />
       </footer>
     </div>
   </body>

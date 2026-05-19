@@ -13,6 +13,8 @@ const zhCN = {
   heroFactFocusValue: '高级感、克制、易读。',
   projectOpen: '打开',
   projectPrivate: '未公开',
+  projectVisibilityPublic: '公开仓库',
+  projectVisibilityPrivate: '私有仓库',
   heroMetricWriting: '持续写作',
   heroMetricProjects: '公开项目',
   heroMetricCraft: '体验标准',

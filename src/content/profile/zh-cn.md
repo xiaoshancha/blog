@@ -12,6 +12,8 @@ socials:
   - label: GitHub
     href: https://github.com/xiaoshancha
     handle: xiaoshancha
+  - label: 抖音
+    handle: Whycue
   - label: Blog Repo
     href: https://github.com/xiaoshancha/blog
     handle: xiaoshancha/blog
@@ -19,21 +21,23 @@ socials:
     href: https://xiaoshancha.github.io/blog/
     handle: xiaoshancha.github.io/blog
 projects:
-  - name: hello-agents
-    href: https://github.com/xiaoshancha/hello-agents
-    year: '2026'
-    summary: "一个从零讲清智能体原理与实践的开源教程项目，覆盖基础概念、框架实践和多智能体系统构建。"
-    stack: [Python, Agent Systems, Open Tutorial]
-  - name: 2024-AICS-EXP
-    href: https://github.com/xiaoshancha/2024-AICS-EXP
-    year: '2026'
-    summary: "国科大智能计算系统实验资料整理仓库，围绕 PyTorch、算子开发和大模型实验提供完整代码与实验参考。"
-    stack: [PyTorch, Course Labs, LLM Experiments]
   - name: tencent-translator-edge-extension
     href: https://github.com/xiaoshancha/tencent-translator-edge-extension
+    visibility: public
     year: '2026'
-    summary: "一个运行在 Edge 浏览器上的翻译插件，接入腾讯云翻译并支持选中即译、跟随光标浮窗和术语库配置。"
+    summary: "一个运行在 Edge 浏览器上的翻译插件，接入腾讯云翻译引擎，强调选中即译、鼠标旁浮窗显示和术语库配置。"
     stack: [JavaScript, Edge Extension, Tencent Cloud]
+  - name: page.
+    href: https://github.com/xiaoshancha/page.
+    visibility: public
+    year: '2023'
+    summary: "一个更早期的页面与样式实验仓库，主要以 CSS 为核心，保留了你在网页视觉和界面细节上的探索痕迹。"
+    stack: [CSS, Page Design, UI Experiments]
+  - name: ex-simulator
+    visibility: private
+    year: '2026'
+    summary: "一个基于 LLM 的对话式剧情游戏，通过聊天记录解析、FastAPI 服务和前端对话界面，把私人叙事做成可互动的体验。"
+    stack: [Python, FastAPI, LLM Game]
 skillGroups:
   - title: 视觉与前端
     items: [Astro, HTML/CSS, Responsive Layouts, Motion Restraint]
@@ -42,20 +46,18 @@ skillGroups:
   - title: 做事方式
     items: [Taste Calibration, Editing for Clarity, Shipping with Constraints]
 timeline:
-  - period: 现在
-    title: 持续写作与搭建
-    organization: Personal Practice
-    summary: "让文字、界面和技术结构共同服务“我是谁”这件事。"
-  - period: 最近几年
-    title: 从模版感走向表达感
-    organization: Independent Exploration
-    summary: "不再满足于“能用”，开始追求更完整的视觉判断、阅读体验和呈现逻辑。"
-  - period: 更早以前
-    title: 以博客为起点
-    organization: Public Notes
-    summary: "从默认主题开始，逐步建立对长期写作、发布流程和个人归档的耐心。"
+  - period: 2025 - 至今
+    title: 硕士在读
+    organization: 中国科学院大学 / UCAS
+    summary: "计算机科学与技术（寻找研究方向中）"
+  - period: 2021 - 2025
+    title: 本科
+    organization: 东北大学 / NEU
+    summary: "软件工程"
 ---
 
-我喜欢那些安静却有锋利感的东西: 文字、界面、节奏、留白，以及不需要大声说话也能留下痕迹的表达方式。
+我叫袁泉，现阶段正在攻读计算机科学与技术的硕士学位。喜欢的方向很多，但也是低精力人群，所以更愿意和大家一起慢慢学、认真学。
 
-这个站点会逐步长成我的公开工作台。它既保留文章，也承载项目、方法、偏好和审美判断。未来的内容可以很慢，但结构必须先足够干净。
+我是冒险主义者，完美的风象星座，ESFP。希望自己永远可靠、永远值得信任，最后能成为像中流砥柱一样的人。
+
+PS：单身状态。

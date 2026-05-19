@@ -122,6 +122,61 @@ main {
   color: var(--text-soft);
 }
 
+.footer-channels {
+  display: flex;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.footer-channel {
+  position: relative;
+  width: 2.8rem;
+  height: 2.8rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  color: var(--text);
+  transition: transform 160ms ease, background 160ms ease;
+}
+
+.footer-channel:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.footer-channel svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  fill: currentColor;
+}
+
+.footer-tooltip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 0.75rem);
+  transform: translateX(-50%) translateY(4px);
+  white-space: nowrap;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface-strong);
+  color: var(--text);
+  padding: 0.45rem 0.8rem;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 160ms ease, transform 160ms ease;
+  font-size: 0.88rem;
+}
+
+.footer-channel:hover .footer-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
 .eyebrow,
 .section-heading p,
 .timeline-period,

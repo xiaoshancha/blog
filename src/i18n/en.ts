@@ -13,6 +13,8 @@ const en = {
   heroFactFocusValue: 'Minimal, expressive, readable.',
   projectOpen: 'Open',
   projectPrivate: 'Private',
+  projectVisibilityPublic: 'Public repo',
+  projectVisibilityPrivate: 'Private repo',
   heroMetricWriting: 'Writing cadence',
   heroMetricProjects: 'Public projects',
   heroMetricCraft: 'Craft standard',

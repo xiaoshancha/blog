@@ -8,6 +8,12 @@ export const siteConfig = sharedSiteConfig as unknown as {
   locales: readonly ['zh-cn', 'en'];
   githubRepo: string;
   githubProfile: string;
+  footerChannels: Array<{
+    key: string;
+    label: string;
+    value: string;
+    href?: string;
+  }>;
   giscus: {
     repo: string;
     repoId: string;

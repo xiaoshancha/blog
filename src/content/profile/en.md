@@ -12,6 +12,8 @@ socials:
   - label: GitHub
     href: https://github.com/xiaoshancha
     handle: xiaoshancha
+  - label: Douyin
+    handle: Whycue
   - label: Blog Repo
     href: https://github.com/xiaoshancha/blog
     handle: xiaoshancha/blog
@@ -19,21 +21,23 @@ socials:
     href: https://xiaoshancha.github.io/blog/
     handle: xiaoshancha.github.io/blog
 projects:
-  - name: hello-agents
-    href: https://github.com/xiaoshancha/hello-agents
-    year: '2026'
-    summary: An open tutorial project that walks from agent fundamentals to practical multi-agent system building with a strong hands-on emphasis.
-    stack: [Python, Agent Systems, Open Tutorial]
-  - name: 2024-AICS-EXP
-    href: https://github.com/xiaoshancha/2024-AICS-EXP
-    year: '2026'
-    summary: A maintained archive of UCAS Intelligent Computing Systems labs, covering PyTorch-based coursework, operator development, and LLM experiments.
-    stack: [PyTorch, Course Labs, LLM Experiments]
   - name: tencent-translator-edge-extension
     href: https://github.com/xiaoshancha/tencent-translator-edge-extension
+    visibility: public
     year: '2026'
-    summary: An Edge browser translation extension built around Tencent Cloud translation, cursor-side popups, and configurable terminology support.
+    summary: An Edge translation extension connected to Tencent Cloud translation, built around instant selection translation, cursor-side popups, and terminology control.
     stack: [JavaScript, Edge Extension, Tencent Cloud]
+  - name: page.
+    href: https://github.com/xiaoshancha/page.
+    visibility: public
+    year: '2023'
+    summary: An earlier page and styling experiment repository, centered on CSS and small UI composition studies.
+    stack: [CSS, Page Design, UI Experiments]
+  - name: ex-simulator
+    visibility: private
+    year: '2026'
+    summary: A private LLM-driven interactive story game that turns chat-history parsing, FastAPI services, and dialogue gameplay into one narrative product.
+    stack: [Python, FastAPI, LLM Game]
 skillGroups:
   - title: Visual and frontend craft
     items: [Astro, HTML/CSS, Responsive Layouts, Motion Restraint]
@@ -42,20 +46,18 @@ skillGroups:
   - title: Working style
     items: [Taste Calibration, Editing for Clarity, Shipping with Constraints]
 timeline:
-  - period: Now
-    title: Writing and building in public
-    organization: Personal Practice
-    summary: "Letting words, interface, and technical structure serve the same question: who am I in public?"
-  - period: Recent years
-    title: Moving past template energy
-    organization: Independent Exploration
-    summary: Shifting from “good enough to use” toward sharper visual judgment, better reading flow, and cleaner presentation logic.
-  - period: Earlier
-    title: Blogging as the starting point
-    organization: Public Notes
-    summary: Beginning with a default theme, then slowly building patience for long-term writing, publishing, and self-archiving.
+  - period: 2025 - Present
+    title: Master's student
+    organization: University of Chinese Academy of Sciences / UCAS
+    summary: "Computer Science and Technology, currently exploring a long-term research direction."
+  - period: 2021 - 2025
+    title: Bachelor's degree
+    organization: Northeastern University / NEU
+    summary: "Software Engineering."
 ---
 
-I am drawn to quiet things with an edge: writing, interfaces, tempo, whitespace, and forms of expression that do not need to be loud to stay memorable.
+My name is Yuan Quan. I am currently pursuing a master's degree in Computer Science and Technology. I am interested in many directions, but I am also someone with limited energy, so I would rather keep learning slowly and seriously with other people.
 
-This site is meant to become a public workbench. It keeps the essays, but it also carries projects, methods, preferences, and the visual standards behind them. The content can grow slowly; the structure should already feel intentional.
+I see myself as an adventurer: an air-sign personality, an ESFP, and someone who wants to stay reliable and worthy of trust. I hope I can grow into the kind of person others can truly count on.
+
+P.S. I am single.

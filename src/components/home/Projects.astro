@@ -20,6 +20,11 @@ const { title, profile, dictionary } = Astro.props;
       <article class="project-card">
         <div class="project-meta">
           <span>{project.year}</span>
+          <span>
+            {project.visibility === 'private'
+              ? dictionary.projectVisibilityPrivate
+              : dictionary.projectVisibilityPublic}
+          </span>
           {project.href ? (
             <a href={project.href} target="_blank" rel="noreferrer">{dictionary.projectOpen}</a>
           ) : (

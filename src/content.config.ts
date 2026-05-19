@@ -4,13 +4,14 @@ import { z } from 'astro/zod';
 
 const socialSchema = z.object({
   label: z.string(),
-  href: z.url(),
+  href: z.url().optional(),
   handle: z.string(),
 });
 
 const projectSchema = z.object({
   name: z.string(),
   href: z.url().optional(),
+  visibility: z.enum(['public', 'private']).default('public'),
   year: z.string(),
   summary: z.string(),
   stack: z.array(z.string()).min(1),
