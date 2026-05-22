@@ -2,8 +2,6 @@ backend:
   name: github
   repo: xiaoshancha/blog
   branch: master
-  auth_type: pkce
-  app_id: Ov23liIgx3mml1i18kAU
 
 site_url: https://xiaoshancha.github.io/blog/
 display_url: https://xiaoshancha.github.io/blog/
