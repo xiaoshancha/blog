@@ -17,21 +17,30 @@
 .comments-block,
 .not-found-shell {
   background: var(--surface-strong);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow: var(--shadow);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-soft);
 }
 
 .post-card,
 .comments-block,
 .not-found-shell {
   border-radius: var(--radius-xl);
-  padding: 1.5rem;
+  padding: 1.8rem;
+  transition: border-color 280ms ease, transform 280ms ease, box-shadow 280ms ease;
+}
+
+.post-card:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
 }
 
 .post-card h2 {
-  margin: 0.4rem 0 0.8rem;
+  margin: 0.6rem 0 0.9rem;
   font-family: 'Cormorant Garamond', serif;
   font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
 }
 
 .post-card-footer {
