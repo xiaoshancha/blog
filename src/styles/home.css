@@ -116,9 +116,9 @@
 .project-card:hover,
 .skill-card:hover,
 .social-card:hover {
-  border-color: var(--line-strong);
+  border-color: var(--accent);
   transform: translateY(-2px);
-  box-shadow: var(--shadow);
+  box-shadow: 0 12px 36px rgba(10, 102, 194, 0.12);
 }
 
 .project-meta {

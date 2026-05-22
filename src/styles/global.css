@@ -16,8 +16,8 @@ body {
   font-family: 'Manrope', sans-serif;
   font-feature-settings: 'ss01', 'ss02', 'cv11';
   background:
-    radial-gradient(circle at top left, rgba(211, 166, 122, 0.10), transparent 35%),
-    radial-gradient(circle at bottom right, rgba(114, 62, 45, 0.08), transparent 32%),
+    radial-gradient(circle at top left, rgba(10, 102, 194, 0.06), transparent 40%),
+    radial-gradient(circle at bottom right, rgba(0, 65, 130, 0.05), transparent 35%),
     var(--bg);
   color: var(--text);
   -webkit-font-smoothing: antialiased;
@@ -53,13 +53,13 @@ img {
 .background-glow-left {
   top: -12rem;
   left: -12rem;
-  background: rgba(196, 149, 113, 0.18);
+  background: rgba(10, 102, 194, 0.12);
 }
 
 .background-glow-right {
   right: -14rem;
   bottom: -14rem;
-  background: rgba(104, 56, 42, 0.12);
+  background: rgba(0, 65, 130, 0.08);
 }
 
 .site-header,
@@ -145,9 +145,9 @@ main,
 .back-link:hover,
 .post-link:hover,
 .contact-link:hover {
-  border-color: var(--text);
-  background: var(--text);
-  color: var(--bg);
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
 }
 
 main {
@@ -175,14 +175,15 @@ main {
   justify-content: center;
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.7);
+  background: #fff;
   color: var(--text);
-  transition: transform 160ms ease, background 160ms ease;
+  transition: transform 160ms ease, background 160ms ease, color 160ms ease;
 }
 
 .footer-channel:hover {
   transform: translateY(-2px);
-  background: rgba(255, 255, 255, 0.92);
+  background: var(--accent);
+  color: #fff;
 }
 
 .footer-channel svg {
@@ -289,8 +290,9 @@ main {
   border: 1px solid var(--line-strong);
   padding: 0.35rem 0.85rem;
   font-size: 0.82rem;
-  color: var(--text-soft);
+  color: var(--accent);
   letter-spacing: 0.02em;
+  background: var(--accent-light);
 }
 
 .prose-shell {
@@ -314,3 +316,19 @@ main {
     padding-top: 1rem;
   }
 }
+
+/* Scroll reveal animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
