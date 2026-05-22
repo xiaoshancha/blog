@@ -2,6 +2,7 @@ backend:
   name: github
   repo: xiaoshancha/blog
   branch: master
+  base_url: https://blog.1337630175.workers.dev
 
 site_url: https://xiaoshancha.github.io/blog/
 display_url: https://xiaoshancha.github.io/blog/
