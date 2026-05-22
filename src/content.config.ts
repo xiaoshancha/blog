@@ -2,15 +2,20 @@ import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
+const optionalUrl = z.preprocess(
+  (val) => (val === '' ? undefined : val),
+  z.string().url().optional(),
+);
+
 const socialSchema = z.object({
   label: z.string(),
-  href: z.url().optional(),
+  href: optionalUrl,
   handle: z.string(),
 });
 
 const projectSchema = z.object({
   name: z.string(),
-  href: z.url().optional(),
+  href: optionalUrl,
   visibility: z.enum(['public', 'private']).default('public'),
   year: z.string(),
   summary: z.string(),
