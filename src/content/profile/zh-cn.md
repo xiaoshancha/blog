@@ -7,7 +7,7 @@ availability: 欢迎与我讨论交流
 location: 中国 北京（工作地）/阜新 沈阳（家乡）
 emailLabel: 联系方式
 emailHref: Github：https://github.com/xiaoshancha，Email：1337630175@qq.com,就用qq邮箱，爱高级不高级
-contactNote: 哈哈
+contactNote: 移不动，联不通
 socials:
   - label: GitHub
     href: https://github.com/xiaoshancha
