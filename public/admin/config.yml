@@ -1,0 +1,195 @@
+backend:
+  name: github
+  repo: xiaoshancha/blog
+  branch: master
+  auth_type: pkce
+  app_id: Ov23liIgx3mml1i18kAU
+
+site_url: https://xiaoshancha.github.io/blog/
+display_url: https://xiaoshancha.github.io/blog/
+logo_url: https://xiaoshancha.github.io/blog/favicon.svg
+publish_mode: simple
+
+media_folder: public/uploads
+public_folder: /blog/uploads
+
+slug:
+  encoding: ascii
+  clean_accents: true
+
+collections:
+  - name: profile
+    label: 首页内容
+    description: 首页 Hero、个人简介、项目、技能栈、时间线、联系方式
+    delete: false
+    files:
+      - name: profile-zh-cn
+        label: 首页内容（中文）
+        file: src/content/profile/zh-cn.md
+        format: yaml-frontmatter
+        fields:
+          - { name: name, label: 站点名, widget: string }
+          - { name: heroKicker, label: Hero 上标, widget: string }
+          - { name: heroTitle, label: Hero 主标题, widget: string }
+          - { name: heroLead, label: Hero 引言, widget: text }
+          - { name: availability, label: 状态/可联系性, widget: string }
+          - { name: location, label: 位置, widget: string }
+          - { name: emailLabel, label: 联系入口标签, widget: string }
+          - { name: emailHref, label: 联系入口链接, widget: string }
+          - { name: contactNote, label: 联系备注, widget: text }
+          - name: socials
+            label: 社交链接
+            widget: list
+            summary: '{{fields.label}} · {{fields.handle}}'
+            fields:
+              - { name: label, label: 平台名, widget: string }
+              - { name: href, label: 链接（可选）, widget: string, required: false }
+              - { name: handle, label: 显示文本/账号, widget: string }
+          - name: projects
+            label: 项目
+            widget: list
+            summary: '{{fields.year}} · {{fields.name}}'
+            fields:
+              - { name: name, label: 项目名, widget: string }
+              - { name: href, label: 链接（可选）, widget: string, required: false }
+              - name: visibility
+                label: 可见性
+                widget: select
+                options: [public, private]
+                default: public
+              - { name: year, label: 年份, widget: string }
+              - { name: summary, label: 简介, widget: text }
+              - name: stack
+                label: 技术栈
+                widget: list
+                field: { name: item, label: 条目, widget: string }
+          - name: skillGroups
+            label: 技能栈分组
+            widget: list
+            summary: '{{fields.title}}'
+            fields:
+              - { name: title, label: 组名, widget: string }
+              - name: items
+                label: 条目
+                widget: list
+                field: { name: item, label: 条目, widget: string }
+          - name: timeline
+            label: 时间线
+            widget: list
+            summary: '{{fields.period}} · {{fields.title}}'
+            fields:
+              - { name: period, label: 时间段, widget: string }
+              - { name: title, label: 标题, widget: string }
+              - { name: organization, label: 机构, widget: string }
+              - { name: summary, label: 描述, widget: text }
+          - { name: body, label: 个人简介正文, widget: markdown }
+
+      - name: profile-en
+        label: Home content (English)
+        file: src/content/profile/en.md
+        format: yaml-frontmatter
+        fields:
+          - { name: name, label: Site name, widget: string }
+          - { name: heroKicker, label: Hero kicker, widget: string }
+          - { name: heroTitle, label: Hero title, widget: string }
+          - { name: heroLead, label: Hero lead, widget: text }
+          - { name: availability, label: Availability, widget: string }
+          - { name: location, label: Location, widget: string }
+          - { name: emailLabel, label: Contact label, widget: string }
+          - { name: emailHref, label: Contact href, widget: string }
+          - { name: contactNote, label: Contact note, widget: text }
+          - name: socials
+            label: Social links
+            widget: list
+            summary: '{{fields.label}} · {{fields.handle}}'
+            fields:
+              - { name: label, label: Platform, widget: string }
+              - { name: href, label: URL (optional), widget: string, required: false }
+              - { name: handle, label: Handle / shown text, widget: string }
+          - name: projects
+            label: Projects
+            widget: list
+            summary: '{{fields.year}} · {{fields.name}}'
+            fields:
+              - { name: name, label: Name, widget: string }
+              - { name: href, label: URL (optional), widget: string, required: false }
+              - name: visibility
+                label: Visibility
+                widget: select
+                options: [public, private]
+                default: public
+              - { name: year, label: Year, widget: string }
+              - { name: summary, label: Summary, widget: text }
+              - name: stack
+                label: Stack
+                widget: list
+                field: { name: item, label: Item, widget: string }
+          - name: skillGroups
+            label: Skill groups
+            widget: list
+            summary: '{{fields.title}}'
+            fields:
+              - { name: title, label: Group title, widget: string }
+              - name: items
+                label: Items
+                widget: list
+                field: { name: item, label: Item, widget: string }
+          - name: timeline
+            label: Timeline
+            widget: list
+            summary: '{{fields.period}} · {{fields.title}}'
+            fields:
+              - { name: period, label: Period, widget: string }
+              - { name: title, label: Title, widget: string }
+              - { name: organization, label: Organization, widget: string }
+              - { name: summary, label: Summary, widget: text }
+          - { name: body, label: Bio body, widget: markdown }
+
+  - name: blog
+    label: 博客文章
+    label_singular: 文章
+    description: 双语博客文章。文件名相同的中英版本会自动并排编辑。
+    folder: src/content/blog
+    create: true
+    delete: true
+    slug: '{{slug}}'
+    path: '{{slug}}'
+    extension: md
+    format: yaml-frontmatter
+    i18n:
+      structure: multiple_folders
+      locales: [zh-cn, en]
+      default_locale: zh-cn
+    fields:
+      - { name: title, label: 标题, widget: string, i18n: true }
+      - { name: description, label: 描述/摘要, widget: text, i18n: true }
+      - name: date
+        label: 发布日期
+        widget: datetime
+        i18n: duplicate
+        format: 'YYYY-MM-DD'
+        date_format: 'YYYY-MM-DD'
+        time_format: false
+        picker_utc: true
+      - name: updated
+        label: 更新日期
+        widget: datetime
+        required: false
+        i18n: duplicate
+        format: 'YYYY-MM-DD'
+        date_format: 'YYYY-MM-DD'
+        time_format: false
+        picker_utc: true
+      - name: translationKey
+        label: 双语关联键
+        widget: string
+        i18n: duplicate
+        hint: 中英版本必须使用相同值，建议用英文短横线（如 site-rebuild）
+      - { name: readingTime, label: 阅读时长, widget: string, i18n: true, default: '3 min', hint: '形如 3 min / 5 min' }
+      - name: tags
+        label: 标签
+        widget: list
+        i18n: true
+        required: false
+        default: []
+      - { name: body, label: 正文, widget: markdown, i18n: true }
