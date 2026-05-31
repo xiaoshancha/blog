@@ -16,6 +16,11 @@ slug:
   encoding: ascii
   clean_accents: true
 
+i18n:
+  structure: multiple_folders
+  locales: [zh-cn, en]
+  default_locale: zh-cn
+
 collections:
   - name: profile
     label: 首页内容
@@ -183,6 +188,7 @@ collections:
         label: 双语关联键
         widget: string
         i18n: duplicate
+        pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', '只能使用小写字母、数字和短横线，例如 site-rebuild']
         hint: 中英版本必须使用相同值，建议用英文短横线（如 site-rebuild）
       - { name: readingTime, label: 阅读时长, widget: string, i18n: true, default: '3 min', hint: '形如 3 min / 5 min' }
       - name: tags
