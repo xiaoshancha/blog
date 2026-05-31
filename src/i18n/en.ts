@@ -53,6 +53,15 @@ const en = {
   notFoundTitle: 'This page slipped away',
   notFoundBody: 'The page you want is not here yet. The homepage is the fastest way back in.',
   notFoundCta: 'Back home',
+  shareTitle: 'Share this post',
+  shareWeChat: 'Share on WeChat',
+  shareMoments: 'Share to Moments',
+  shareCopyLink: 'Copy link',
+  shareCopied: 'Link copied',
+  shareWeChatHint: 'Copy the link below, then paste it into a WeChat chat to share.',
+  shareMomentsHint: 'Open this page inside WeChat, tap the ··· menu, and choose "Share to Moments". The card will render automatically.',
+  shareInWeChatHint: 'Tap ··· in the WeChat top bar to share.',
+  shareClose: 'Close',
 } as const;
 
 export default en;

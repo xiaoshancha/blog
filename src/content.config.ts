@@ -44,6 +44,7 @@ const blog = defineCollection({
     translationKey: z.string(),
     readingTime: z.string(),
     tags: z.array(z.string()).default([]),
+    cover: z.string().optional(),
   }),
 });
 

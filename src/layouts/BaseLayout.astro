@@ -18,6 +18,8 @@ interface Props {
   canonicalPath: string;
   alternateLinks?: Alternate[];
   otherLocaleHref?: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
 }
 
 const {
@@ -27,8 +29,16 @@ const {
   canonicalPath,
   alternateLinks = [],
   otherLocaleHref,
+  ogImage,
+  ogType = 'website',
 } = Astro.props;
 const dictionary = getDictionary(locale);
+
+const canonicalUrl = `${siteConfig.site}${canonicalPath}`;
+const resolvedOgImage = ogImage ?? `${siteConfig.base}/og/default.png`;
+const absoluteOgImage = resolvedOgImage.startsWith('http')
+  ? resolvedOgImage
+  : `${siteConfig.site}${resolvedOgImage}`;
 ---
 
 <!doctype html>
@@ -41,6 +51,19 @@ const dictionary = getDictionary(locale);
     <link rel="icon" href={`${siteConfig.base}/favicon.svg`} />
     <link rel="canonical" href={`${siteConfig.site}${canonicalPath}`} />
     {alternateLinks.map((link) => <link rel="alternate" hreflang={link.hrefLang} href={`${siteConfig.site}${link.href}`} />)}
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={siteConfig.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:locale" content={locale === 'zh-cn' ? 'zh_CN' : 'en_US'} />
+    <meta property="og:image" content={absoluteOgImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={absoluteOgImage} />
     <title>{title}</title>
   </head>
   <body>

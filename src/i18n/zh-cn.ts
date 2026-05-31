@@ -53,6 +53,15 @@ const zhCN = {
   notFoundTitle: '页面走丢了',
   notFoundBody: '你访问的页面暂时不存在，回首页继续逛会更快。',
   notFoundCta: '回到首页',
+  shareTitle: '分享这篇文章',
+  shareWeChat: '分享到微信',
+  shareMoments: '分享到朋友圈',
+  shareCopyLink: '复制链接',
+  shareCopied: '链接已复制',
+  shareWeChatHint: '在微信内打开链接：先复制下方链接，到微信里粘贴给好友。',
+  shareMomentsHint: '在微信内打开本页后，点击右上角 ··· 选择"分享到朋友圈"，会自动展示卡片。',
+  shareInWeChatHint: '点击微信右上角 ··· 进行分享。',
+  shareClose: '关闭',
 } as const;
 
 export default zhCN;

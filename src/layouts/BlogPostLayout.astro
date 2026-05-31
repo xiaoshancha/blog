@@ -1,6 +1,7 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import GiscusComments from '../components/comments/GiscusComments.astro';
+import ShareActions from '../components/blog/ShareActions.astro';
 import { siteConfig, type SiteLocale } from '../site.config';
 import type { BlogEntry } from '../utils/content';
 import { formatLocaleDate, postsPath } from '../utils/i18n';
@@ -17,6 +18,10 @@ interface Props {
 
 const { locale, post, canonicalPath, alternateLinks, otherLocaleHref, content: Content } = Astro.props;
 const dictionary = getDictionary(locale);
+
+const ogImage = post.data.cover
+  ? post.data.cover
+  : `${siteConfig.base}/og/${locale}/${post.data.translationKey}.png`;
 ---
 
 <BaseLayout
@@ -26,6 +31,8 @@ const dictionary = getDictionary(locale);
   canonicalPath={canonicalPath}
   alternateLinks={alternateLinks}
   otherLocaleHref={otherLocaleHref}
+  ogImage={ogImage}
+  ogType="article"
 >
   <article class="post-shell">
     <a class="back-link" href={postsPath(locale)}>{dictionary.backToPosts}</a>
@@ -41,6 +48,7 @@ const dictionary = getDictionary(locale);
     <div class="post-body prose-shell">
       <Content />
     </div>
+    <ShareActions locale={locale} />
     <GiscusComments
       term={post.data.translationKey}
       lang={locale === 'zh-cn' ? 'zh-CN' : 'en'}

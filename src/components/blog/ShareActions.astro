@@ -1,0 +1,256 @@
+---
+import { getDictionary } from '../../i18n/config';
+import type { SiteLocale } from '../../site.config';
+
+interface Props {
+  locale: SiteLocale;
+}
+
+const { locale } = Astro.props;
+const dictionary = getDictionary(locale);
+---
+
+<section class="share-block" data-share-locale={locale}>
+  <h2 class="share-block-title">{dictionary.shareTitle}</h2>
+  <div class="share-block-actions">
+    <button type="button" class="share-button" data-share="wechat">
+      {dictionary.shareWeChat}
+    </button>
+    <button type="button" class="share-button" data-share="moments">
+      {dictionary.shareMoments}
+    </button>
+    <button type="button" class="share-button" data-share="copy">
+      {dictionary.shareCopyLink}
+    </button>
+  </div>
+  <p class="share-block-hint" data-share-in-wechat-hint hidden>
+    {dictionary.shareInWeChatHint}
+  </p>
+</section>
+
+<dialog class="share-dialog" data-share-dialog>
+  <form method="dialog" class="share-dialog-inner">
+    <h3 data-share-dialog-title></h3>
+    <p data-share-dialog-hint></p>
+    <div class="share-dialog-link-row">
+      <code data-share-dialog-link></code>
+      <button type="button" class="share-button share-button-primary" data-share-dialog-copy>
+        {dictionary.shareCopyLink}
+      </button>
+    </div>
+    <p class="share-dialog-status" data-share-dialog-status hidden>
+      {dictionary.shareCopied}
+    </p>
+    <button type="submit" class="share-button">{dictionary.shareClose}</button>
+  </form>
+</dialog>
+
+<script
+  is:inline
+  define:vars={{
+    dict: {
+      wechat: dictionary.shareWeChat,
+      moments: dictionary.shareMoments,
+      copyLink: dictionary.shareCopyLink,
+      copied: dictionary.shareCopied,
+      wechatHint: dictionary.shareWeChatHint,
+      momentsHint: dictionary.shareMomentsHint,
+    },
+  }}
+>
+  (() => {
+    const block = document.querySelector('.share-block');
+    if (!block) return;
+    const dialog = document.querySelector('.share-dialog');
+    if (!dialog || !(dialog instanceof HTMLDialogElement)) return;
+
+    const titleEl = dialog.querySelector('[data-share-dialog-title]');
+    const hintEl = dialog.querySelector('[data-share-dialog-hint]');
+    const linkEl = dialog.querySelector('[data-share-dialog-link]');
+    const statusEl = dialog.querySelector('[data-share-dialog-status]');
+    const copyBtn = dialog.querySelector('[data-share-dialog-copy]');
+    const inWeChatHint = block.querySelector('[data-share-in-wechat-hint]');
+
+    const isWeChat = /micromessenger/i.test(navigator.userAgent);
+    if (isWeChat && inWeChatHint) inWeChatHint.removeAttribute('hidden');
+
+    const url = window.location.href;
+    if (linkEl) linkEl.textContent = url;
+
+    async function copyToClipboard(text) {
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+          return true;
+        }
+      } catch (_) {}
+      try {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        const ok = document.execCommand('copy');
+        document.body.removeChild(ta);
+        return ok;
+      } catch (_) {
+        return false;
+      }
+    }
+
+    function openDialog(kind) {
+      if (!titleEl || !hintEl || !statusEl) return;
+      if (kind === 'wechat') {
+        titleEl.textContent = dict.wechat;
+        hintEl.textContent = dict.wechatHint;
+      } else if (kind === 'moments') {
+        titleEl.textContent = dict.moments;
+        hintEl.textContent = dict.momentsHint;
+      } else {
+        titleEl.textContent = dict.copyLink;
+        hintEl.textContent = '';
+      }
+      statusEl.setAttribute('hidden', '');
+      if (typeof dialog.showModal === 'function') dialog.showModal();
+      else dialog.setAttribute('open', '');
+    }
+
+    block.addEventListener('click', async (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLElement)) return;
+      const action = target.getAttribute('data-share');
+      if (!action) return;
+      if (action === 'copy') {
+        const ok = await copyToClipboard(url);
+        openDialog('copy');
+        if (ok && statusEl) statusEl.removeAttribute('hidden');
+        return;
+      }
+      openDialog(action);
+    });
+
+    if (copyBtn) {
+      copyBtn.addEventListener('click', async () => {
+        const ok = await copyToClipboard(url);
+        if (ok && statusEl) statusEl.removeAttribute('hidden');
+      });
+    }
+  })();
+</script>
+
+<style>
+  .share-block {
+    margin: 64px 0 48px;
+    padding: 28px 32px;
+    border: 1px solid rgba(10, 37, 64, 0.08);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(8px);
+  }
+
+  .share-block-title {
+    margin: 0 0 16px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: 0.01em;
+  }
+
+  .share-block-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .share-button {
+    appearance: none;
+    border: 1px solid rgba(10, 37, 64, 0.12);
+    background: #ffffff;
+    color: var(--text);
+    padding: 10px 18px;
+    border-radius: 999px;
+    font: inherit;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: border-color 0.18s ease, transform 0.18s ease, background 0.18s ease;
+  }
+
+  .share-button:hover {
+    border-color: rgba(10, 102, 194, 0.45);
+    transform: translateY(-1px);
+  }
+
+  .share-button-primary {
+    background: #0a66c2;
+    color: #ffffff;
+    border-color: #0a66c2;
+  }
+
+  .share-button-primary:hover {
+    background: #084f96;
+    border-color: #084f96;
+  }
+
+  .share-block-hint {
+    margin: 16px 0 0;
+    font-size: 0.9rem;
+    color: rgba(10, 37, 64, 0.62);
+  }
+
+  .share-dialog {
+    border: none;
+    border-radius: 18px;
+    padding: 0;
+    max-width: min(520px, 92vw);
+    box-shadow: 0 30px 80px -30px rgba(10, 37, 64, 0.45);
+  }
+
+  .share-dialog::backdrop {
+    background: rgba(10, 37, 64, 0.45);
+    backdrop-filter: blur(2px);
+  }
+
+  .share-dialog-inner {
+    padding: 28px 32px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .share-dialog-inner h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  .share-dialog-inner p {
+    margin: 0;
+    line-height: 1.55;
+    color: rgba(10, 37, 64, 0.78);
+    font-size: 0.95rem;
+  }
+
+  .share-dialog-link-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background: rgba(10, 37, 64, 0.04);
+    border-radius: 12px;
+    padding: 10px 14px;
+  }
+
+  .share-dialog-link-row code {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 0.85rem;
+    color: rgba(10, 37, 64, 0.85);
+  }
+
+  .share-dialog-status {
+    color: #0a66c2;
+    font-size: 0.85rem;
+  }
+</style>
