@@ -1,0 +1,39 @@
+---
+import type { BlogEntry } from '../../utils/content';
+import { slugFromId } from '../../utils/content';
+import type { SiteLocale } from '../../site.config';
+import { formatLocaleDate, postPath, postsPath } from '../../utils/i18n';
+
+interface Props {
+  locale: SiteLocale;
+  posts: BlogEntry[];
+  title: string;
+  dictionary: Record<string, string>;
+}
+
+const { locale, posts, title, dictionary } = Astro.props;
+const latest = posts.slice(0, 3);
+---
+
+<section class="content-section">
+  <div class="section-heading">
+    <span class="section-index">01</span>
+    <h2>{title}</h2>
+    <a class="section-link" href={postsPath(locale)}>
+      {dictionary.viewAllPosts}
+      <span aria-hidden="true">→</span>
+    </a>
+  </div>
+  <ol class="latest-list">
+    {latest.map((post) => (
+      <li class="latest-item">
+        <a class="latest-item-link" href={postPath(locale, slugFromId(post.id))}>
+          <time class="latest-date">{formatLocaleDate(locale, post.data.date)}</time>
+          <h3>{post.data.title}</h3>
+          <p>{post.data.description}</p>
+          <span class="latest-arrow" aria-hidden="true">→</span>
+        </a>
+      </li>
+    ))}
+  </ol>
+</section>

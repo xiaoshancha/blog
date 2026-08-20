@@ -48,11 +48,18 @@
   margin-top: 1.4rem;
 }
 
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 2rem;
+}
+
 .hero-metrics {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.4rem;
-  margin-top: 2.8rem;
+  margin-top: 2.2rem;
 }
 
 .hero-metrics div {
@@ -98,7 +105,12 @@
 }
 
 .project-grid,
-.skills-grid,
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
 .social-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -198,6 +210,65 @@
   font-weight: 500;
 }
 
+.latest-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.9rem;
+}
+
+.latest-item-link {
+  position: relative;
+  display: grid;
+  grid-template-columns: 9.5rem 1fr auto;
+  align-items: baseline;
+  gap: 1.2rem;
+  padding: 1.4rem 1.6rem;
+  background: var(--surface-strong);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  transition: border-color 280ms ease, transform 280ms ease, box-shadow 280ms ease;
+}
+
+.latest-item-link:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 36px rgba(10, 102, 194, 0.12);
+}
+
+.latest-date {
+  color: var(--text-mute);
+  font-size: 0.86rem;
+  letter-spacing: 0.06em;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.latest-item h3 {
+  margin: 0 0 0.4rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.latest-item p {
+  margin: 0;
+  color: var(--text-soft);
+  line-height: 1.65;
+  font-size: 0.92rem;
+}
+
+.latest-arrow {
+  color: var(--accent);
+  transition: transform 240ms ease;
+}
+
+.latest-item-link:hover .latest-arrow {
+  transform: translateX(4px);
+}
+
 @media (max-width: 980px) {
   .hero-panel,
   .project-grid,
@@ -215,6 +286,12 @@
 
   .hero-metrics {
     grid-template-columns: 1fr;
+  }
+
+  .latest-item-link {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    padding: 1.2rem 1.3rem;
   }
 
   .timeline-item {

@@ -1,5 +1,6 @@
 const zhCN = {
   languageLabel: '中文',
+  navMenu: '菜单',
   navHome: '首页',
   navPosts: '文章',
   navSetup: '信息入口',
@@ -18,6 +19,10 @@ const zhCN = {
   heroMetricWriting: '持续写作',
   heroMetricProjects: '公开项目',
   heroMetricCraft: '体验标准',
+  heroCtaPosts: '阅读文章',
+  heroCtaProjects: '浏览项目',
+  sectionLatest: '最新文章',
+  viewAllPosts: '查看全部',
   sectionBio: '个人简介',
   sectionProjects: '项目 / 作品',
   sectionSkills: '技能栈',

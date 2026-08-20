@@ -1,5 +1,6 @@
 const en = {
   languageLabel: 'English',
+  navMenu: 'Menu',
   navHome: 'Home',
   navPosts: 'Posts',
   navSetup: 'Setup',
@@ -18,6 +19,10 @@ const en = {
   heroMetricWriting: 'Writing cadence',
   heroMetricProjects: 'Public projects',
   heroMetricCraft: 'Craft standard',
+  heroCtaPosts: 'Read posts',
+  heroCtaProjects: 'Browse projects',
+  sectionLatest: 'Latest posts',
+  viewAllPosts: 'View all',
   sectionBio: 'Bio',
   sectionProjects: 'Projects',
   sectionSkills: 'Capabilities',

@@ -4,9 +4,10 @@ interface Props {
   profile: ProfileEntry;
   dictionary: Record<string, string>;
   postsCount: number;
+  postsHref: string;
 }
 
-const { profile, dictionary, postsCount } = Astro.props;
+const { profile, dictionary, postsCount, postsHref } = Astro.props;
 ---
 
 <section class="hero-panel">
@@ -14,6 +15,10 @@ const { profile, dictionary, postsCount } = Astro.props;
     <p class="eyebrow">{profile.data.heroKicker}</p>
     <h1>{profile.data.heroTitle}</h1>
     <p class="hero-lead">{profile.data.heroLead}</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href={postsHref}>{dictionary.heroCtaPosts}</a>
+      <a class="btn btn-ghost" href="#projects">{dictionary.heroCtaProjects}</a>
+    </div>
     <div class="hero-metrics" aria-label="Site metrics">
       <div>
         <strong>{postsCount}</strong>

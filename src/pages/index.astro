@@ -2,6 +2,7 @@
 import { render } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/home/Hero.astro';
+import LatestPosts from '../components/home/LatestPosts.astro';
 import Bio from '../components/home/Bio.astro';
 import Projects from '../components/home/Projects.astro';
 import Skills from '../components/home/Skills.astro';
@@ -11,7 +12,7 @@ import SocialLinks from '../components/home/SocialLinks.astro';
 import { getDictionary } from '../i18n/config';
 import { siteConfig } from '../site.config';
 import { getPostsByLocale, getProfile } from '../utils/content';
-import { homePath } from '../utils/i18n';
+import { homePath, postsPath } from '../utils/i18n';
 
 const locale = 'zh-cn' as const;
 const dictionary = getDictionary(locale);
@@ -34,7 +35,8 @@ const { Content } = await render(profile);
   otherLocaleHref={homePath('en')}
 >
   <div class="home-shell">
-    <Hero profile={profile} dictionary={dictionary} postsCount={posts.length} />
+    <Hero profile={profile} dictionary={dictionary} postsCount={posts.length} postsHref={postsPath(locale)} />
+    <LatestPosts locale={locale} posts={posts} title={dictionary.sectionLatest} dictionary={dictionary} />
     <Bio title={dictionary.sectionBio} content={Content} />
     <Projects title={dictionary.sectionProjects} profile={profile} dictionary={dictionary} />
     <Skills title={dictionary.sectionSkills} profile={profile} />

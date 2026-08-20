@@ -71,17 +71,34 @@ const absoluteOgImage = resolvedOgImage.startsWith('http')
       <div class="background-glow background-glow-left"></div>
       <div class="background-glow background-glow-right"></div>
       <header class="site-header">
-        <nav>
-          <a href={homePath(locale)}>{dictionary.navHome}</a>
-          <a href={postsPath(locale)}>{dictionary.navPosts}</a>
-          <a href={setupPath(locale)}>{dictionary.navSetup}</a>
-          <a href={`${homePath(locale)}#contact`}>{dictionary.navContact}</a>
+        <div class="site-header-inner">
+        <a class="brand" href={homePath(locale)} aria-label={siteConfig.name}>
+          <span class="brand-dot" aria-hidden="true"></span>
+          <span class="brand-name">{siteConfig.name}</span>
+        </a>
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-controls="site-nav"
+          aria-expanded="false"
+          aria-label={dictionary.navMenu}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <nav id="site-nav" class="site-nav">
+          <a class="nav-link" href={homePath(locale)}>{dictionary.navHome}</a>
+          <a class="nav-link" href={postsPath(locale)}>{dictionary.navPosts}</a>
+          <a class="nav-link" href={setupPath(locale)}>{dictionary.navSetup}</a>
+          <a class="nav-link" href={`${homePath(locale)}#contact`}>{dictionary.navContact}</a>
           {otherLocaleHref ? (
-            <a href={otherLocaleHref} aria-label={dictionary.navSwitch}>
+            <a class="locale-pill" href={otherLocaleHref} aria-label={dictionary.navSwitch}>
               {locale === 'zh-cn' ? dictionary.continueToEnglish : dictionary.continueToChinese}
             </a>
           ) : null}
         </nav>
+        </div>
       </header>
       <main>
         <slot />
@@ -93,6 +110,23 @@ const absoluteOgImage = resolvedOgImage.startsWith('http')
     </div>
     <script>
       document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.querySelector('.nav-toggle');
+        const nav = document.querySelector('.site-nav');
+        if (toggle && nav) {
+          toggle.addEventListener('click', () => {
+            const isOpen = nav.classList.toggle('open');
+            toggle.classList.toggle('open', isOpen);
+            toggle.setAttribute('aria-expanded', String(isOpen));
+          });
+          nav.querySelectorAll('a').forEach((link) =>
+            link.addEventListener('click', () => {
+              nav.classList.remove('open');
+              toggle.classList.remove('open');
+              toggle.setAttribute('aria-expanded', 'false');
+            })
+          );
+        }
+
         const targets = document.querySelectorAll(
           '.content-section, .hero-panel, .hero-copy, .hero-card, .project-card, .skill-card, .social-card, .timeline-item, .post-card, .contact-card'
         );
