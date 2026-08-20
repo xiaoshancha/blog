@@ -2,15 +2,18 @@ backend:
   name: github
   repo: xiaoshancha/blog
   branch: master
-  base_url: https://blog.1337630175.workers.dev
+  # GitHub OAuth 认证代理 Worker（部署在 Cloudflare Workers）
+  base_url: https://blog-auth.1337630175.workers.dev
 
-site_url: https://xiaoshancha.github.io/blog/
-display_url: https://xiaoshancha.github.io/blog/
-logo_url: https://xiaoshancha.github.io/blog/favicon.svg
+# 当前主部署：Cloudflare（自定义域名 blog.baimuyuan.online）
+site_url: https://blog.baimuyuan.online/
+display_url: https://blog.baimuyuan.online/
+logo_url: https://blog.baimuyuan.online/favicon.svg
 publish_mode: simple
 
 media_folder: public/uploads
-public_folder: /blog/uploads
+# Cloudflare 在根路径；若迁回 GitHub Pages 需改回 /blog/uploads
+public_folder: /uploads
 
 slug:
   encoding: ascii
