@@ -1,13 +1,13 @@
 ---
 name: 袁泉
 heroKicker: 山山山茶
-heroTitle: 你问我为什么顽固而专一
-heroLead: 我想好好介绍我自己
-availability: 欢迎与我讨论交流
+heroTitle: hello world
+heroLead: 袁泉的个人主页
+availability: 目前为硕士研究生在读，有志于大模型推理加速与优化的研究工作
 location: 中国 北京（工作地）/阜新 沈阳（家乡）
 emailLabel: 联系方式
-emailHref: Github：https://github.com/xiaoshancha，Email：1337630175@qq.com,就用qq邮箱，爱高级不高级
-contactNote: 移不动，联不通
+emailHref: Github：https://github.com/xiaoshancha，Email：1337630175@qq.com
+contactNote: 欢迎进入主页，访问我的项目，提pr，提issue
 socials:
   - label: GitHub
     href: https://github.com/xiaoshancha
