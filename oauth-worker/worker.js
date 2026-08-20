@@ -10,6 +10,7 @@
  *   ORIGINS               - 允许登录的站点来源，逗号分隔，例如：
  *                           https://blog.baimuyuan.online,https://blog.1337630175.workers.dev,http://localhost:4321
  *   REDIRECT_URL          - 可选，默认自动取本 Worker 域名 + /callback，一般不用填
+ *
  */
 
 function randomString(len) {
@@ -43,7 +44,7 @@ function loginScript(provider, message, content, origins) {
       var d = clean(allowed[i]); // 白名单条目去掉协议前缀再比较（修复永不匹配 bug）
       if (d === '*') return true;
       if (d.indexOf('*') >= 0) {
-        var re = new RegExp('^' + d.replace(/\\./g, '\\\\.').replace(/\*/g, '.*') + '$');
+        var re = new RegExp('^' + d.replace(/\\\\./g, '\\\\.').replace(/\\\\*/g, '.*') + '$');
         if (re.test(c)) return true;
       } else if (d === c) {
         return true;
