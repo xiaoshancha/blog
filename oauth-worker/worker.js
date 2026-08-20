@@ -22,9 +22,20 @@ function randomString(len) {
 }
 
 function loginScript(provider, message, content, origins) {
-  return `<!doctype html><html lang="en"><head><meta charset="utf-8" /></head><body><script>
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8" /></head>
+<body style="margin:0;background:#f8fafe;color:#0b3d6e;font-family:system-ui,sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh">
+  <div style="max-width:34rem;text-align:center;line-height:1.9;font-size:0.95rem">
+    <p style="font-size:1.4rem;font-weight:600;margin:0 0 0.5rem">Sveltia CMS · OAuth</p>
+    <p id="st" style="margin:0;opacity:0.85">启动…</p>
+  </div>
+<script>
 (function () {
   var allowed = ${JSON.stringify((origins || '').split(',').map((s) => s.trim()).filter(Boolean))};
+  var st = document.getElementById('st');
+  function mark(label, extra) {
+    if (extra !== undefined) { console.log('[oauth-probe]', label, extra); st.textContent = label + ' → ' + extra; }
+    else { console.log('[oauth-probe]', label); st.textContent = label; }
+  }
   function clean(o) { return o.replace(/^https?:\\/\\//, '').replace(/\\/$/, ''); }
   function inList(origin) {
     var c = clean(origin);
@@ -41,14 +52,17 @@ function loginScript(provider, message, content, origins) {
     return false;
   }
   function receive(e) {
-    if (!inList(e.origin)) { console.log('Invalid origin: ' + e.origin); return; }
+    if (!inList(e.origin)) { mark('✗ 拒绝来源', e.origin); return; }
+    mark('收到父窗口回信', e.origin);
     window.opener.postMessage(
       'authorization:${provider}:${message}:' + JSON.stringify(${JSON.stringify(content)}),
       e.origin
     );
+    mark('✓ 已将登录结果回传，可关闭本窗口');
   }
   window.addEventListener('message', receive, false);
   window.opener.postMessage('authorizing:${provider}', '*');
+  mark('已通知父窗口，等待回信…');
 })();
 <\/script></body></html>`;
 }
@@ -87,7 +101,6 @@ export default {
       const redirectUri = env.REDIRECT_URL || `${base}/callback`;
       const headers = { Accept: 'application/json', 'Content-Type': 'application/json' };
       try {
-        // GitHub 支持以 client_id:client_secret 作为 Basic Auth
         headers.Authorization =
           'Basic ' + btoa(env.OAUTH_CLIENT_ID + ':' + env.OAUTH_CLIENT_SECRET);
       } catch (_) {
