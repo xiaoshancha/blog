@@ -29,7 +29,7 @@ function loginScript(provider, message, content, origins) {
   function inList(origin) {
     var c = clean(origin);
     for (var i = 0; i < allowed.length; i++) {
-      var d = allowed[i];
+      var d = clean(allowed[i]); // 白名单条目去掉协议前缀再比较（修复永不匹配 bug）
       if (d === '*') return true;
       if (d.indexOf('*') >= 0) {
         var re = new RegExp('^' + d.replace(/\\./g, '\\\\.').replace(/\*/g, '.*') + '$');
