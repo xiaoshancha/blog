@@ -4,7 +4,7 @@ import GiscusComments from '../components/comments/GiscusComments.astro';
 import ShareActions from '../components/blog/ShareActions.astro';
 import { siteConfig, type SiteLocale } from '../site.config';
 import type { BlogEntry } from '../utils/content';
-import { formatLocaleDate, postsPath } from '../utils/i18n';
+import { formatLocaleDate, postsPath, withBase } from '../utils/i18n';
 import { getDictionary } from '../i18n/config';
 
 interface Props {
@@ -21,7 +21,7 @@ const dictionary = getDictionary(locale);
 
 const ogImage = post.data.cover
   ? post.data.cover
-  : `${siteConfig.base}/og/${locale}/${post.data.translationKey}.png`;
+  : withBase(`/og/${locale}/${post.data.translationKey}.png`);
 ---
 
 <BaseLayout

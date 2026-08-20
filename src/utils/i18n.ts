@@ -19,6 +19,14 @@ function basePrefix() {
   return base ? `/${base}` : '';
 }
 
+// 给静态资源路径加上 base 前缀，兼容 base = '/'（Cloudflare）与 '/blog'（GitHub Pages）
+export function withBase(path: string) {
+  const clean = trimSlashes(path);
+  const prefix = basePrefix();
+  if (!clean) return prefix ? `${prefix}/` : '/';
+  return prefix ? `${prefix}/${clean}` : `/${clean}`;
+}
+
 export function localizedPath(locale: SiteLocale, pathname = '') {
   const clean = trimSlashes(pathname);
   const prefix = basePrefix();

@@ -2,7 +2,7 @@
 import { getDictionary } from '../i18n/config';
 import { siteConfig } from '../site.config';
 import type { SiteLocale } from '../site.config';
-import { homePath, postsPath, setupPath } from '../utils/i18n';
+import { homePath, postsPath, setupPath, withBase } from '../utils/i18n';
 import FooterChannels from '../components/common/FooterChannels.astro';
 import '../styles/global.css';
 
@@ -35,7 +35,7 @@ const {
 const dictionary = getDictionary(locale);
 
 const canonicalUrl = `${siteConfig.site}${canonicalPath}`;
-const resolvedOgImage = ogImage ?? `${siteConfig.base}/og/default.png`;
+const resolvedOgImage = ogImage ?? withBase('/og/default.png');
 const absoluteOgImage = resolvedOgImage.startsWith('http')
   ? resolvedOgImage
   : `${siteConfig.site}${resolvedOgImage}`;
@@ -48,7 +48,7 @@ const absoluteOgImage = resolvedOgImage.startsWith('http')
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#f8fafe" />
-    <link rel="icon" href={`${siteConfig.base}/favicon.svg`} />
+    <link rel="icon" href={withBase('/favicon.svg')} />
     <link rel="canonical" href={`${siteConfig.site}${canonicalPath}`} />
     {alternateLinks.map((link) => <link rel="alternate" hreflang={link.hrefLang} href={`${siteConfig.site}${link.href}`} />)}
     <meta property="og:type" content={ogType} />

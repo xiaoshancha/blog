@@ -19,6 +19,27 @@ const FONT_SOURCES = {
     'https://cdn.jsdelivr.net/gh/notofonts/noto-cjk@main/Sans/SubsetOTF/SC/NotoSansSC-Bold.otf',
 };
 
+async function downloadFont(name, url, target) {
+  let lastErr;
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    try {
+      console.log(attempt > 1 ? `[og] downloading ${name} (attempt ${attempt}/3)` : `[og] downloading ${name}`);
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const buf = Buffer.from(await res.arrayBuffer());
+      // 完整性校验：Noto 中文字体超 8MB，若明显偏小则判定为残缺下载
+      if (buf.length < 1_000_000) throw new Error(`suspicious small file (${buf.length} bytes)`);
+      await writeFile(target, buf);
+      return;
+    } catch (err) {
+      lastErr = err;
+      console.warn(`[og] download failed ${name}: ${err.message}` + (attempt < 3 ? ', retrying...' : ''));
+      await new Promise((r) => setTimeout(r, 1500 * attempt));
+    }
+  }
+  throw lastErr instanceof Error ? lastErr : new Error(String(lastErr));
+}
+
 async function ensureFonts() {
   await mkdir(fontsDir, { recursive: true });
   for (const [name, url] of Object.entries(FONT_SOURCES)) {
@@ -26,11 +47,7 @@ async function ensureFonts() {
     try {
       await access(target);
     } catch {
-      console.log(`[og] downloading ${name}`);
-      const res = await fetch(url);
-      if (!res.ok) throw new Error(`Failed to fetch ${url}: ${res.status}`);
-      const buf = Buffer.from(await res.arrayBuffer());
-      await writeFile(target, buf);
+      await downloadFont(name, url, target);
     }
   }
   return {
@@ -166,7 +183,7 @@ function template({ title, description, kicker, dateLabel }) {
               fontWeight: 400,
             },
             children: [
-              { type: 'div', props: { children: siteConfig.site.replace(/^https?:\/\//, '') + siteConfig.base } },
+              { type: 'div', props: { children: siteConfig.site.replace(/^https?:\/\//, '') + (siteConfig.base === '/' ? '' : siteConfig.base) } },
               { type: 'div', props: { children: dateLabel } },
             ],
           },
